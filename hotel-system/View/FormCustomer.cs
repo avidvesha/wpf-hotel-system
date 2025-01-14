@@ -178,8 +178,6 @@ namespace PerpustakaanAppMVC.View
 
         private void btnSelesai_Click(object sender, EventArgs e)
         {
-            FormMainMenu formMainMenu = new FormMainMenu();
-            formMainMenu.Show();
             this.Close();
         }
 

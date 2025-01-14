@@ -19,7 +19,7 @@ namespace hotel_system.Model.Repository
         {
             _conn = context.Conn;
         }
-
+         
         public int Create(Customer _cust)
         {
             int result = 0;

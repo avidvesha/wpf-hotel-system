@@ -49,7 +49,8 @@ namespace hotel_system.View
 
         private void btnLog_Click(object sender, EventArgs e)
         {
-            
+            FormLog formLog = new FormLog();
+            formLog.Show();
         }
     }
 }

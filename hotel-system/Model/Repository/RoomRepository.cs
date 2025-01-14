@@ -7,8 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
-
 namespace hotel_system.Model.Repository
 {
     public class RoomRepository
@@ -153,7 +151,7 @@ namespace hotel_system.Model.Repository
             try
             {
                 // deklarasi perintah SQL
-                string sql = @"SELECT * FROM rooms WHERE id_room NOT IN ( SELECT id_room FROM orders WHERE (date_in<=@tgl_in AND date_out>=@tgl_out) OR (date_in BETWEEN @tgl_in AND @tgl_out) OR (date_out BETWEEN @tgl_in AND @tgl_out) )";
+                string sql = @"SELECT * FROM rooms WHERE id_room NOT IN ( SELECT id_room FROM orders WHERE isPaid=@status AND ((date_in<=@tgl_in AND date_out>=@tgl_out) OR (date_in BETWEEN @tgl_in AND @tgl_out) OR (date_out BETWEEN @tgl_in AND @tgl_out)) )";
 
                 // membuat objek command menggunakan blok using
                 using (MySqlCommand cmd = new MySqlCommand(sql, _conn))
@@ -163,6 +161,7 @@ namespace hotel_system.Model.Repository
                     //cmd.Parameters.AddWithValue("@tgl_in", string.Format("'{0}'", masuk.ToString()));
                     //cmd.Parameters.AddWithValue("@tgl_out", string.Format("'{0}'", keluar.ToString()));
                     cmd.Parameters.AddWithValue("@type", type);
+                    cmd.Parameters.AddWithValue("@status", 0);
                     // membuat objek dtr (data reader) untuk menampung result set (hasil perintah SELECT)
                     using (MySqlDataReader dtr = cmd.ExecuteReader())
                     {

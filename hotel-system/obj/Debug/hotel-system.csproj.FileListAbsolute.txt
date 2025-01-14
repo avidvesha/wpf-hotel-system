@@ -48,6 +48,6 @@ D:\.coding\.college\advance-programming\hotel-system\hotel-system\obj\Debug\hote
 D:\.coding\.college\advance-programming\hotel-system\hotel-system\obj\Debug\hotel_system.View.FormEntryRoom.resources
 D:\.coding\.college\advance-programming\hotel-system\hotel-system\obj\Debug\hotel_system.View.FormOrderRoom.resources
 D:\.coding\.college\advance-programming\hotel-system\hotel-system\obj\Debug\PerpustakaanAppMVC.View.FormOrderCust.resources
-D:\.coding\.college\advance-programming\hotel-system\hotel-system\obj\Debug\hotel_system.View.FormOrder.resources
 D:\.coding\.college\advance-programming\hotel-system\hotel-system\obj\Debug\PerpustakaanAppMVC.View.FormOrderMain.resources
 D:\.coding\.college\advance-programming\hotel-system\hotel-system\obj\Debug\PerpustakaanAppMVC.View.FormTransaction.resources
+D:\.coding\.college\advance-programming\hotel-system\hotel-system\obj\Debug\PerpustakaanAppMVC.View.FormLog.resources

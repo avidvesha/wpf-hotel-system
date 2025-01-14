@@ -222,6 +222,47 @@ namespace hotel_system.Model.Repository
             return list;
         }
         
+        public List<OrderShow> ReadOrderLog()
+        {
+            // membuat objek collection untuk menampung objek mahasiswa
+            List<OrderShow> list = new List<OrderShow>();
+            try
+            {
+                // deklarasi perintah SQL
+                string sql = @"SELECT o.id, r.id_room, c.name, o.date_in, o.date_out, o.id_admin FROM orders o INNER JOIN customers c ON o.id_customer=c.id INNER JOIN rooms r ON o.id_room=r.id_room WHERE isPaid=1 ORDER BY id;";
+                // membuat objek command menggunakan blok using
+                using (MySqlCommand cmd = new MySqlCommand(sql, _conn))
+                {
+                    // membuat objek dtr (data reader) untuk menampung result set (hasil perintah SELECT)
+                    using (MySqlDataReader dtr = cmd.ExecuteReader())
+                    {
+                        // panggil method Read untuk mendapatkan baris dari result set
+                        while (dtr.Read())
+                        {
+                            // proses konversi dari row result set ke object
+                            OrderShow _order = new OrderShow
+                            {
+                                Id              = dtr["id"].ToString(),
+                                Type_Room       = dtr["id_room"].ToString(),
+                                Name_Customer   = dtr["name"].ToString(),
+                                DateIn          = DateTime.Parse(dtr["date_in"].ToString()),
+                                DateOut         = DateTime.Parse(dtr["date_out"].ToString()),
+                                Name_Admin      = dtr["id_admin"].ToString()
+                            };
+
+                            // tambahkan objek mahasiswa ke dalam collection
+                            list.Add(_order);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.Print("ReadAll error: {0}", ex.Message);
+            }
+            return list;
+        }
+        
         public List<OrderShow> ReadByName(String Name)
         {
             // membuat objek collection untuk menampung objek mahasiswa
@@ -229,7 +270,49 @@ namespace hotel_system.Model.Repository
             try
             {
                 // deklarasi perintah SQL
-                string sql = @"SELECT o.id, r.id_room, c.name, o.date_in, o.date_out, o.id_admin FROM orders o INNER JOIN customers c ON o.id_customer=c.id INNER JOIN rooms r ON o.id_room=r.id_room WHERE isPaid=0 AND c.name LIKE @param ORDER BY r.id";
+                string sql = @"SELECT o.id, r.id_room, c.name, o.date_in, o.date_out, o.id_admin FROM orders o INNER JOIN customers c ON o.id_customer=c.id INNER JOIN rooms r ON o.id_room=r.id_room WHERE isPaid=0 AND c.name LIKE @param ORDER BY r.id_room";
+                // membuat objek command menggunakan blok using
+                using (MySqlCommand cmd = new MySqlCommand(sql, _conn))
+                {
+                    // membuat objek dtr (data reader) untuk menampung result set (hasil perintah SELECT)
+                    cmd.Parameters.AddWithValue("@param", string.Format("%{0}%", Name));
+                    using (MySqlDataReader dtr = cmd.ExecuteReader())
+                    {
+                        // panggil method Read untuk mendapatkan baris dari result set
+                        while (dtr.Read())
+                        {
+                            // proses konversi dari row result set ke object
+                            OrderShow _order = new OrderShow
+                            {
+                                Id              = dtr["id"].ToString(),
+                                Type_Room       = dtr["id_room"].ToString(),
+                                Name_Customer   = dtr["name"].ToString(),
+                                DateIn          = DateTime.Parse(dtr["date_in"].ToString()),
+                                DateOut         = DateTime.Parse(dtr["date_out"].ToString()),
+                                Name_Admin      = dtr["id_admin"].ToString()
+                            };
+
+                            // tambahkan objek mahasiswa ke dalam collection
+                            list.Add(_order);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.Print("ReadAll error: {0}", ex.Message);
+            }
+            return list;
+        }
+        
+        public List<OrderShow> ReadByLog(String Name)
+        {
+            // membuat objek collection untuk menampung objek mahasiswa
+            List<OrderShow> list = new List<OrderShow>();
+            try
+            {
+                // deklarasi perintah SQL
+                string sql = @"SELECT o.id, r.id_room, c.name, o.date_in, o.date_out, o.id_admin FROM orders o INNER JOIN customers c ON o.id_customer=c.id INNER JOIN rooms r ON o.id_room=r.id_room WHERE isPaid=1 AND c.name LIKE @param ORDER BY r.id_room";
                 // membuat objek command menggunakan blok using
                 using (MySqlCommand cmd = new MySqlCommand(sql, _conn))
                 {

@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace PerpustakaanAppMVC.View
 {
-    public partial class FormOrderMain : Form
+    public partial class FormLog : Form
     {
         //deklarasi objek collection u/ menampung obj mhs
         private List<OrderShow> listOfOrderShow= new List<OrderShow>();
@@ -22,7 +22,7 @@ namespace PerpustakaanAppMVC.View
         private OrderController controller;
 
 
-        public FormOrderMain()
+        public FormLog()
         {
             InitializeComponent();
 
@@ -52,7 +52,7 @@ namespace PerpustakaanAppMVC.View
             // kosongkan listview
             lvwOrder.Items.Clear();
             // panggil method ReadAll dan tampung datanya ke dalam collection
-            listOfOrderShow = controller.ReadOrderList();
+            listOfOrderShow = controller.ReadOrderLog();
             // ekstrak objek mhs dari collection
             foreach (var ords in listOfOrderShow)
             {
@@ -74,7 +74,7 @@ namespace PerpustakaanAppMVC.View
             // kosongkan listview
             lvwOrder.Items.Clear();
             // panggil method ReadAll dan tampung datanya ke dalam collection
-            listOfOrderShow = controller.ReadByName(txtNama.Text);
+            listOfOrderShow = controller.ReadByLog(txtNama.Text);
             txtCount.Text = listOfOrderShow.Count().ToString();
             // ekstrak objek mhs dari collection
             foreach (var ords in listOfOrderShow)

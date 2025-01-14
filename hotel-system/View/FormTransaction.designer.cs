@@ -206,7 +206,7 @@
             this.MaximizeBox = false;
             this.Name = "FormTransaction";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Orders List";
+            this.Text = "Orders List - Choose the Order to Process the Payment";
             this.ResumeLayout(false);
             this.PerformLayout();
 

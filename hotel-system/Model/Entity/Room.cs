@@ -15,6 +15,5 @@ namespace hotel_system.Model.Entity
         public string Inroom_am {  get; set; }
         public string Outroom_am {  get; set; }
         public string Bathroom_am {  get; set; }
-        //public bool IsAvailable { get; set; }
     }
 }

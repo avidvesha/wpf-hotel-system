@@ -158,22 +158,6 @@ namespace hotel_system.Controller
                 MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             return result;
         }
-
-
-        public List<Order> ReadByType(string Type)
-        {
-            // membuat objek collection
-            List<Order> list = new List<Order>();
-            // membuat objek context menggunakan blok using
-            using (DbContext context = new DbContext())
-            {
-                // membuat objek dari class repository
-                _repository = new OrderRepository(context);
-                // panggil method GetByType yang ada di dalam class repository
-                list = _repository.ReadByNama(Type);
-            }
-            return list;
-        }
         
         public List<OrderShow> ReadByName(string Name)
         {
@@ -186,6 +170,21 @@ namespace hotel_system.Controller
                 _repository = new OrderRepository(context);
                 // panggil method GetByType yang ada di dalam class repository
                 list = _repository.ReadByName(Name);
+            }
+            return list;
+        }
+        
+        public List<OrderShow> ReadByLog(string Name)
+        {
+            // membuat objek collection
+            List<OrderShow> list = new List<OrderShow>();
+            // membuat objek context menggunakan blok using
+            using (DbContext context = new DbContext())
+            {
+                // membuat objek dari class repository
+                _repository = new OrderRepository(context);
+                // panggil method GetByType yang ada di dalam class repository
+                list = _repository.ReadByLog(Name);
             }
             return list;
         }
@@ -215,6 +214,20 @@ namespace hotel_system.Controller
                 _repository = new OrderRepository(context);
                 // panggil method GetAll yang ada di dalam class repository
                 list = _repository.ReadOrderList();
+            }
+            return list;
+        }
+        public List<OrderShow> ReadOrderLog()
+        {
+            // membuat objek collection
+            List<OrderShow> list = new List<OrderShow>();
+            // membuat objek context menggunakan blok using
+            using (DbContext context = new DbContext())
+            {
+                // membuat objek dari class repository
+                _repository = new OrderRepository(context);
+                // panggil method GetAll yang ada di dalam class repository
+                list = _repository.ReadOrderLog();
             }
             return list;
         }

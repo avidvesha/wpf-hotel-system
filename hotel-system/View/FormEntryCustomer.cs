@@ -82,7 +82,7 @@ namespace hotel_system.View
                                     // reset form input, utk persiapan input data berikutnya
                     txtName.Clear();
                     dateTimePicker1.ResetText();
-                    cbxGender.Refresh();
+                    cbxGender.SelectedItem = "";
                     txtAddress.Clear();
                     txtPhone.Clear();
                     txtName.Focus();
